@@ -1,722 +1,432 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download the latest modded games for Android and iOS with unlimited resources, premium features, and more!">
-    <meta name="keywords" content="modded games, apk mods, hacked games, android mods, ios mods">
-    <title>Modded Games Hub - Download Modded APKs & IPAs</title>
-
-    <!-- Preload important resources -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style">
+    <title>AniHub Pro - منصة الأنمي المتميزة</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Modded Games Hub",
-        "url": "https://yourwebsite.com",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://yourwebsite.com/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXX-X"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-XXXXXX-X');
-    </script>
-
-    <!-- Font Awesome and Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #00e676;
-            --primary-dark: #00c764;
-            --secondary-color: #007bff;
-            --dark-bg: #121212;
-            --card-bg: #1e1e1e;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --border-radius: 12px;
-            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --primary: #E50914;
+            --primary-light: #ff4d4d;
+            --primary-dark: #b20710;
+            --accent: #FF9500;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: rgba(20, 20, 20, 0.7);
+            --text-light: #FFFFFF;
+            --text-gray: #d1d1d1;
+            --text-dark: #8a8a8a;
+            --glow-color: rgba(229, 9, 20, 0.6);
+            --success: #00c853;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: var(--card-bg);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        header h1 {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            color: var(--text-light);
+            font-family: 'Tajawal', sans-serif;
+            height: 100vh;
             margin: 0;
-        }
-        
-        .search-bar {
-            margin: 30px 0;
-            position: relative;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 14px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            background: #2a2a2a;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-bar input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--primary-color);
-            background: #333;
-        }
-        
-        .search-results {
-            position: absolute;
-            background: #333;
-            width: 100%;
-            max-height: 250px;
-            overflow-y: auto;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            display: none;
-            z-index: 10;
-            box-shadow: var(--box-shadow);
-        }
-        
-        .search-results div {
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: background 0.2s;
-            border-bottom: 1px solid #444;
-        }
-        
-        .search-results div:last-child {
-            border-bottom: none;
-        }
-        
-        .search-results div:hover {
-            background: #3d3d3d;
-        }
-        
-        .categories {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scrollbar-width: thin;
-        }
-        
-        .categories::-webkit-scrollbar {
-            height: 6px;
-        }
-        
-        .categories::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 6px;
-        }
-        
-        .categories button {
-            padding: 10px 22px;
-            border: none;
-            background: #333;
-            color: var(--text-primary);
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            flex-shrink: 0;
-        }
-        
-        .categories button:hover {
-            background: var(--primary-color);
-            color: #000;
-            transform: translateY(-2px);
-        }
-        
-        .categories button.active {
-            background: var(--primary-color);
-            color: #000;
-            box-shadow: 0 4px 8px rgba(0, 230, 118, 0.3);
-        }
-        
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .game-grid.loaded {
-            opacity: 1;
-        }
-        
-        .game-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
+            padding: 0;
             overflow: hidden;
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
             position: relative;
+        }
+
+        /* تأثيرات الخلفية الديناميكية */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(229, 9, 20, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255, 149, 0, 0.15) 0%, transparent 25%);
+            z-index: 0;
+            animation: bgPan 20s infinite alternate;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(5,5,5,0.98) 100%);
+            backdrop-filter: blur(2px);
+        }
+
+        .loading-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: var(--transition);
         }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .loading-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--glow-color),
+                transparent 55%
+            );
+            animation: rotateGlow 6s linear infinite;
+            z-index: -1;
         }
-        
-        .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 230, 118, 0.2);
+
+        .loading-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
         }
-        
-        .game-card::before {
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--glow-color);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .status {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .status i {
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loading-content {
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .feature i {
+            color: var(--accent);
+        }
+
+        .feature:hover {
+            transform: translateY(-3px);
+            background: rgba(229, 9, 20, 0.2);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.2);
+        }
+
+        .progress-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        .progress-fill::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-        
-        .game-card img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            loading: lazy;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .game-card-content {
-            padding: 20px;
-        }
-        
-        .game-card h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-        
-        .game-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        
-        .game-card .platforms {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .game-card .platforms button {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .game-card .platforms button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .android-btn {
-            background: var(--primary-color);
-            color: #000;
-        }
-        
-        .android-btn:hover {
-            background: var(--primary-dark);
-        }
-        
-        .ios-btn {
-            background: var(--secondary-color);
-            color: #fff;
-        }
-        
-        .game-card .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .game-card .feature {
-            background: rgba(0, 230, 118, 0.1);
-            color: var(--primary-color);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 200;
-            overflow-y: auto;
-            padding: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.show {
-            opacity: 1;
-        }
-        
-        .modal-content {
-            background: var(--card-bg);
-            max-width: 500px;
-            margin: 20px auto;
-            border-radius: var(--border-radius);
-            padding: 20px;
-            position: relative;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        
-        .close-btn:hover {
-            color: var(--primary-color);
-        }
-        
-        .modal img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .modal h2 {
-            margin: 10px 0;
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 1.3rem;
-        }
-        
-        .modal p {
-            margin-bottom: 15px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-        
-        .modal-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .modal-btn {
-            padding: 12px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .modal-btn-primary {
-            background: var(--primary-color);
-            color: #000;
-        }
-        
-        .modal-btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 230, 118, 0.3);
-        }
-        
-        .delay-bar {
-            display: none;
-            width: 100%;
-            height: 6px;
-            background: #333;
-            margin-top: 12px;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .delay-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: var(--primary-color);
-            animation: delay 2s linear forwards;
-        }
-        
-        @keyframes delay {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-        
-        .adblock-banner {
-            display: none;
-            background: #ff4444;
-            padding: 12px;
-            text-align: center;
-            position: fixed;
             bottom: 0;
-            width: 100%;
-            z-index: 300;
-            font-weight: 500;
-        }
-        
-        .newsletter {
-            margin: 40px 0;
-            text-align: center;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .newsletter h3 {
-            margin-bottom: 20px;
-            font-weight: 500;
-            font-size: 1.3rem;
-            color: var(--text-primary);
-        }
-        
-        .newsletter-form {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .newsletter input {
-            padding: 14px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            background: #2a2a2a;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-            min-width: 250px;
-        }
-        
-        .newsletter button {
-            padding: 14px 25px;
-            border: none;
-            background: var(--primary-color);
-            color: #000;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-        
-        .newsletter button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
-        .disclaimer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-align: center;
-            line-height: 1.7;
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: var(--card-bg);
-            margin-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .social-links {
-            margin-bottom: 20px;
-        }
-        
-        .social-links a {
-            color: var(--primary-color);
-            margin: 0 15px;
-            font-size: 1.5rem;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        .social-links a:hover {
-            color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-        
-        footer p {
-            margin-top: 20px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .share-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        
-        .share-btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            color: #fff;
-            font-weight: 500;
-            transition: var(--transition);
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .share-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .share-twitter {
-            background: #1DA1F2;
-        }
-        
-        .share-facebook {
-            background: #4267B2;
-        }
-        
-        .reviews {
-            margin-top: 20px;
-        }
-        
-        .review {
-            background: #2a2a2a;
-            padding: 12px;
-            border-radius: var(--border-radius);
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .review-header {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .review-content {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        
-        .show-more-btn {
-            grid-column: 1 / -1;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .show-more-btn button {
-            padding: 12px 30px;
-            background: var(--primary-color);
-            color: #000;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .show-more-btn button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 230, 118, 0.3);
-        }
-        
-        .loading {
-            display: flex;
-            justify-content: center;
-            padding: 40px;
-            grid-column: 1 / -1;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(0, 230, 118, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shine 2s infinite;
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-color);
-            color: #000;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .loading-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dark);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 99;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            gap: 5px;
         }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+
+        .user-count {
+            color: var(--accent);
+            font-weight: 700;
         }
-        
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
-        
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .game-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .newsletter input {
-                width: 100%;
-            }
-            
-            .modal-content {
+            .loading-container {
                 max-width: 90%;
-                padding: 15px;
+                padding: 20px;
             }
             
-            .modal img {
-                height: 250px;
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .features {
+                gap: 10px;
+            }
+            
+            .feature {
+                padding: 8px 12px;
+                font-size: 0.7rem;
             }
         }
-        
-        @media (max-width: 480px) {
-            .newsletter-form {
-                flex-direction: column;
-            }
+    </style>
+</head>
+<body>
+    <!-- تأثيرات الخلفية -->
+    <div class="bg-pattern"></div>
+    
+    <!-- شاشة التحميل الاحترافية -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-header">
+                <div class="logo">
+                    <i class="fas fa-play-circle logo-icon"></i>
+                    <span class="logo-text">AniHub Pro</span>
+                </div>
+                <p class="tagline">منصة الأنمي الأكثر تقدمًا في العالم العربي</p>
+                <p class="status">
+                    <i class="fas fa-circle-notch"></i>
+                    <span>جاري تحضير تجربة المشاهدة المتميزة...</span>
+                </p>
+            </div>
             
-            .newsletter input,
-            .newsletter button {
-                width: 100%;
-            }
+            <div class="loading-content">
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>جودة عالية 4K</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>دبلجة عربية حصرية</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>أكثر من 10,000 حلقة</span>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>جاري تحميل المحتوى المميز...</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
             
-            .categories button {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-       
+            <div class="loading-footer">
+                <p>انضم إلى <span class="user-count">1,245,893</span> مشاهد راضي عن الخدمة</p>
+                <p>© 2023 AniHub Pro - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const CPA_URL = "https://installchecker.com/cl/i/3x1ln";
+            
+            // زيادة العداد بشكل ديناميكي
+            const userCount = document.querySelector('.user-count');
+            let currentCount = 1245893;
+            const countInterval = setInterval(() => {
+                currentCount += Math.floor(Math.random() * 3) + 1;
+                userCount.textContent = currentCount.toLocaleString();
+            }, 300);
+            
+            // محاكاة تحميل متقدم مع تفاصيل
+            let progress = 0;
+            const steps = [
+                {percent: 15, text: "جاري تحميل المكتبة..."},
+                {percent: 35, text: "جاري تحضير خوادم البث..."},
+                {percent: 60, text: "جاري تحميل واجهة المستخدم..."},
+                {percent: 85, text: "جاري التحقق من الاشتراك..."},
+                {percent: 100, text: "اكتمل التحميل بنجاح!"}
+            ];
+            
+            let currentStep = 0;
+            const loadInterval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    const step = steps[currentStep];
+                    progress = step.percent;
+                    progressFill.style.width = progress + '%';
+                    progressPercent.textContent = progress + '%';
+                    document.querySelector('.progress-header span').textContent = step.text;
+                    
+                    currentStep++;
+                } else {
+                    clearInterval(loadInterval);
+                    clearInterval(countInterval);
+                    
+                    // تأثير اكتمال التحميل
+                    progressFill.style.background = "linear-gradient(90deg, var(--primary), var(--success))";
+                    document.querySelector('.status i').className = "fas fa-check-circle";
+                    document.querySelector('.status span').textContent = "جاهز للاستخدام!";
+                    
+                    // الانتقال بعد التأثير
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        loadingScreen.style.transition = 'opacity 0.5s ease';
+                        
+                        setTimeout(() => {
+                            window.location.replace(CPA_URL);
+                        }, 500);
+                    }, 1500);
+                }
+            }, 1200);
+            
+            // الانتقال الفوري عند النقر
+            document.addEventListener('click', function() {
+                window.location.replace(CPA_URL);
+            });
+        });
+    </script>
+</body>
+</html>
